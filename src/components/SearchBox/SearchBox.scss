@@ -1,0 +1,19 @@
+.search-box {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+        width: 400px;
+        line-height: 50px;
+        border: 1px solid #cecece;
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 20px;
+
+        &:focus {
+            border-color: #c59613;
+        }
+    }
+}
