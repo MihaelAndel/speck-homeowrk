@@ -1,33 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.scss';
+
+import {
+    HeaderInner,
+    HeaderWrapper,
+    NavigationList,
+    Navigation,
+    NavigationElement,
+    LogoContainer,
+    Logo,
+} from './HeaderStyle';
 import FOILogo from '../../assets/images/logo.png';
 
 const Header = () => {
     return (
-        <header className="header-main">
-            <div className="header-main__inner">
-                <Link to="/" className="logo-container">
-                    <img src={FOILogo} alt="Logo" />
-                </Link>
-                <nav className="header-main__nav">
-                    <ul>
-                        <li>
+        <HeaderWrapper>
+            <HeaderInner>
+                <LogoContainer to="/">
+                    <Logo src={FOILogo} alt="Logo" />
+                </LogoContainer>
+                <Navigation>
+                    <NavigationList>
+                        <NavigationElement>
                             <Link to="/speakers">Sudionici</Link>
-                        </li>
-                        <li>
+                        </NavigationElement>
+                        <NavigationElement>
                             <Link to="/events">Događanja</Link>
-                        </li>
-                        <li>
+                        </NavigationElement>
+                        <NavigationElement>
                             <Link to="/">Kontakt</Link>
-                        </li>
-                        <li>
+                        </NavigationElement>
+                        <NavigationElement>
                             <Link to="/">Prijavi se</Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+                        </NavigationElement>
+                    </NavigationList>
+                </Navigation>
+            </HeaderInner>
+        </HeaderWrapper>
     );
 };
 

@@ -1,14 +1,12 @@
 import React from 'react';
-import './About.scss';
+import { AboutWrapper, AboutButton, AboutText } from './AboutStyle';
 const About = (props) => {
     const { text, buttonText, link } = props;
     return (
-        <div className="about">
-            <p>{text}</p>
-            <a href={link} className="btn">
-                {buttonText}
-            </a>
-        </div>
+        <AboutWrapper>
+            <AboutText>{text}</AboutText>
+            <AboutButton href={link}>{buttonText}</AboutButton>
+        </AboutWrapper>
     );
 };
 

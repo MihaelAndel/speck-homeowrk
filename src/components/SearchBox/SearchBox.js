@@ -1,18 +1,18 @@
 import React from 'react';
 
-import './SearchBox.scss';
+import { Input, SearchBoxWrapper } from './SearchBoxStyle';
 
 const SearchBox = (props) => {
     return (
-        <div className="search-box">
-            <input
+        <SearchBoxWrapper>
+            <Input
                 placeholder={props.placeholder}
                 type="text"
                 onInput={(e) => {
                     props.callback(e.target.value);
                 }}
             />
-        </div>
+        </SearchBoxWrapper>
     );
 };
 
