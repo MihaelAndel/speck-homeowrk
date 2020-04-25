@@ -9,6 +9,7 @@ import Events from './pages/Events';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import titles from './lib/pageTitles';
+import ToDos from './pages/ToDos';
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                 <Route exact path="/" render={() => <Home title={titles.home} />} />
                 <Route path="/speakers" render={() => <Speakers title={titles.speakers} />} />
                 <Route path="/events" render={() => <Events title={titles.events} />} />
+                <Route path="/todos" render={() => <ToDos />} />
             </MainSection>
             <Footer />
         </BrowserRouter>
