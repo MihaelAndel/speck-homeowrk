@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import events from '../lib/events';
+import { getEvents } from '../api/events';
 import SectionEvents from '../components/SectionEvents/SectionEvents';
 import InfoBox from '../components/InfoBox/InfoBox';
 import LoaderWrapper from '../components/LoaderWrapper/LoaderWrapper';
@@ -12,10 +12,12 @@ const Events = (props) => {
     const [allEvents, setAllEvents] = useState('');
 
     useEffect(() => {
-        setTimeout(() => {
-            setEventList(events);
-            setAllEvents(events);
-        }, 1000);
+        const getData = async () => {
+            const response = await getEvents(localStorage.getItem('token'));
+            setEventList(response.events);
+            setAllEvents(response.events);
+        };
+        getData();
     }, []);
 
     const filterEvents = (filterText) => {
@@ -29,7 +31,7 @@ const Events = (props) => {
             );
         }
     };
-
+    console.log(eventList);
     return (
         <>
             <h1 class="page-title">Događanja</h1>
@@ -39,16 +41,17 @@ const Events = (props) => {
                 <>
                     <SearchBox placeholder="Search events..." callback={filterEvents} />
                     <SectionEvents>
-                        {eventList.map((event, index) => (
-                            <InfoBox
-                                key={index}
-                                title={event.title}
-                                location={event.location}
-                                dateTime={event.dateTime}
-                                links={event.links}
-                                about={event.about}
-                            />
-                        ))}
+                        {eventList &&
+                            eventList.map((event, index) => (
+                                <InfoBox
+                                    key={index}
+                                    title={event.title}
+                                    location={event.location}
+                                    dateTime={event.dateTime}
+                                    links={event.links}
+                                    about={event.about}
+                                />
+                            ))}
                     </SectionEvents>
                 </>
             )}

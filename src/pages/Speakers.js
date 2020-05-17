@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import LoaderWrapper from '../components/LoaderWrapper/LoaderWrapper';
 import SearchBox from '../components/SearchBox/SearchBox';
 import InfoBox from '../components/InfoBox/InfoBox';
-import speakers from '../lib/speakers';
+import { getSpeakers } from '../api/speakers';
 import SectionEvents from '../components/SectionEvents/SectionEvents';
 
 const Speakers = (props) => {
@@ -12,10 +12,12 @@ const Speakers = (props) => {
     const [allSpeakers, setAllSpeakers] = useState('');
 
     useEffect(() => {
-        setTimeout(() => {
-            setSpeakerList(speakers);
-            setAllSpeakers(speakers);
-        }, 1000);
+        const getData = async () => {
+            const response = await getSpeakers(localStorage.getItem('token'));
+            setSpeakerList(response.speakers);
+            setAllSpeakers(response.speakers);
+        };
+        getData();
     }, []);
 
     const filterSpeakers = (filterText) => {
